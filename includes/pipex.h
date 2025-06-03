@@ -22,8 +22,7 @@ typedef struct s_data
 	int		n_cmd;
 	char	**cmd;
 	char	**envp;
-	bool	is_here_doc;
-	char	*here_doc;
+	bool	here_doc;
 	char	*limiter;
 
 }			t_data;
@@ -35,6 +34,7 @@ void		manage_infile(t_data *data, int *pipefd);
 void		manage_outfile(t_data *data, int *pipefd);
 bool		exe_my_cmd(char *cmd, char **envp);
 void		error(char *str, int code);
+void		f_error(char *str, int code);
 void		manage_here_doc(t_data *data);
 
 #endif

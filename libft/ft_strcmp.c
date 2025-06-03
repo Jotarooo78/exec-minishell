@@ -1,38 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   ft_strcmp.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/26 21:22:59 by armosnie          #+#    #+#             */
-/*   Updated: 2025/06/03 18:11:09 by armosnie         ###   ########.fr       */
+/*   Created: 2025/05/29 18:30:11 by armosnie          #+#    #+#             */
+/*   Updated: 2025/06/03 12:41:34 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pipex.h"
+#include "libft.h"
 
-void	free_array(char **split)
+int	ft_strcmp(char *s1, char *s2)
 {
-	int	j;
+	int	i;
 
-	j = 0;
-	while (split[j])
-	{
-		free(split[j]);
-		j++;
-	}
-	free(split);
-}
-
-void	error(char *str, int code)
-{
-	perror(str);
-	exit(code);
-}
-
-void	f_error(char *str, int code)
-{
-	fprintf(stderr, "%s", str);
-	exit(code);
+	i = 0;
+	while (s1[i] && s2[i] && s1[i] == s2[i])
+		i++;
+	return (s1[i] - s2[i]);
 }

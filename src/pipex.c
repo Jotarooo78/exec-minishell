@@ -6,7 +6,7 @@
 /*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 18:05:29 by armosnie          #+#    #+#             */
-/*   Updated: 2025/05/29 15:44:24 by armosnie         ###   ########.fr       */
+/*   Updated: 2025/06/03 18:26:36 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	child_call(t_data *data, int *pipefd, int i)
 {
-	if (i == 0)
+	if (i == 0 && data->here_doc == false)
 		manage_infile(data, pipefd);
 	else if (i == data->n_cmd - 1)
 		manage_outfile(data, pipefd);
