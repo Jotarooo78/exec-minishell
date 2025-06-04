@@ -6,7 +6,7 @@
 /*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 16:43:06 by armosnie          #+#    #+#             */
-/*   Updated: 2025/05/29 19:00:20 by armosnie         ###   ########.fr       */
+/*   Updated: 2025/06/04 16:02:49 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,17 +89,3 @@ bool    exe_my_cmd(char *cmd, char **envp)
     error("command not found", 127);
     return (false);
 }
-
-
-// int main(int argc, char **argv, char **envp)
-// {    
-//     if (argc > 1)
-//     {
-//         t_data data;
-//         if (init_data(&data, argc, argv, envp) == false)
-//             return (1);
-//         if (exe_my_cmd(argv[1], envp) == false)
-//             return (false);
-//     }
-//     return (0);
-// }
