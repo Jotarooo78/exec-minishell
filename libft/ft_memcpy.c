@@ -3,41 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: matis <matis@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/08 12:31:02 by armosnie          #+#    #+#             */
-/*   Updated: 2025/04/29 15:32:57 by marvin           ###   ########.fr       */
+/*   Created: 2024/11/13 15:09:37 by messengu          #+#    #+#             */
+/*   Updated: 2024/11/25 22:20:36 by matis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	size_t		i;
-	char		*d;
-	const char	*s;
+	unsigned char		*dst_cpy;
+	const unsigned char	*src_cpy;
 
-	i = 0;
-	d = (char *)dest;
-	s = (const char *)src;
-	if (dest == NULL && src == NULL && n > 0)
-		return (0);
-	while (n)
-	{
-		d[i] = s[i];
-		i++;
-		n--;
-	}
-	return (d);
+	if (!dst && !src)
+		return (NULL);
+	dst_cpy = (unsigned char *)dst;
+	src_cpy = (unsigned char *)src;
+	while (n--)
+		*(dst_cpy)++ = *(src_cpy)++;
+	return (dst);
 }
-/*
-int main(int ac, char **av)
-{
-	if (ac == 4)
-	{
-		ft_printf("%s\n", (char *)ft_memcpy(av[1], av[2], atoi(av[3])));
-		ft_printf("%s\n", (char *)memcpy(av[1], av[2], atoi(av[3])));
-	}
-	return (0);
-}*/

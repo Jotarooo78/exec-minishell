@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: matis <matis@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/08 14:13:42 by armosnie          #+#    #+#             */
-/*   Updated: 2025/04/29 15:32:57 by marvin           ###   ########.fr       */
+/*   Created: 2024/11/14 11:58:54 by messengu          #+#    #+#             */
+/*   Updated: 2024/11/26 00:04:03 by matis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,38 +14,20 @@
 
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	unsigned char	*d;
-	unsigned char	*s;
-	size_t			i;
+	unsigned char	*cdest;
+	unsigned char	*csrc;
 
-	d = (unsigned char *)dest;
-	s = (unsigned char *)src;
-	i = 0;
-	if (dest == NULL && src == NULL)
+	cdest = (unsigned char *)dest;
+	csrc = (unsigned char *)src;
+	if (cdest == csrc)
 		return (dest);
-	if (dest > src)
+	if (cdest > csrc)
 	{
 		while (n--)
-			d[n] = s[n];
+			*(cdest + n) = *(csrc + n);
+		return (dest);
 	}
-	else
-	{
-		while (i < n)
-		{
-			d[i] = s[i];
-			i++;
-		}
-	}
-	return (d);
+	while (n--)
+		*cdest++ = *csrc++;
+	return (dest);
 }
-/*
-int	main(void)
-{
-	char *src = "rem ipssum dolor sit a";
-	char dest[ft_strlen(src)];
-	ft_printf("%s",(char *)memmove(src, dest, 8));
-	ft_printf("%s\n",(char *)ft_memmove(src, dest, 8));
-	if (src != ft_memmove(src, dest, 8))
-		write(1, "dest's adress was not returned\n", 31);
-  write(1, dest, 22);
-}*/

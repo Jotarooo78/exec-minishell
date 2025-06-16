@@ -3,61 +3,46 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: matis <matis@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/11 12:29:01 by armosnie          #+#    #+#             */
-/*   Updated: 2025/04/29 15:32:57 by marvin           ###   ########.fr       */
+/*   Created: 2024/11/14 16:56:21 by messengu          #+#    #+#             */
+/*   Updated: 2024/11/25 20:48:18 by matis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+static char	*nullstr(void)
+{
+	char	*ptr;
+
+	ptr = (char *)malloc(sizeof(char) * 1);
+	if (!ptr)
+		return (NULL);
+	ptr[0] = '\0';
+	return (ptr);
+}
+
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	size_t	i;
-	char	*str;
-	char	*res;
+	char	*ptr;
+	size_t	ssize;
 
-	str = (char *)s;
-	i = 0;
-	if (len == 0 || s == NULL || start > (size_t)ft_strlen(s))
-		return (ft_strdup(""));
-	if (ft_strlen(s) - start < len)
-		len = ft_strlen(s) - start;
-	res = malloc(sizeof(char) * (len + 1));
-	if (res == NULL)
+	ssize = ft_strlen(s);
+	if (start >= ssize)
+		return (nullstr());
+	if (len > ssize - start)
+		len = ssize - start;
+	ptr = (char *)malloc(sizeof(char) * len + 1);
+	if (!ptr)
 		return (NULL);
-	while (i < len)
-	{
-		res[i] = str[start + i];
-		i++;
-	}
-	res[i] = '\0';
-	return (res);
+	ft_strlcpy(ptr, s + start, len + 1);
+	return (ptr);
 }
 
 // int main()
-// {	char *str = "01234";
-// 	size_t size = 10;
-// 	char *ret = ft_substr(str, 10, size);
-
-// 	if (!strncmp(ret, "", 1))
-// 	{
-// 	free(ret);
-// 	exit(ft_printf("TEST_SUCCESS"));
-// 	}
-// 	free(ret);
-// 	exit(ft_printf("TEST_FAILED"));
-// }
-// int	main(int ac, char **av)
 // {
-// 	char	*res;
-
-// 	res = ft_substr(av[1], atoi(av[2]), atoi(av[3]));
-// 	if (ac == 4)
-// 	{
-// 		ft_printf("%s\n", res);
-// 	}
-// 	free(res);
-// 	return (0);
+// 	char *sub = ft_substr("hola", 0, -1);
+// 	printf("%s\n", sub);
+// 	return 0;
 // }

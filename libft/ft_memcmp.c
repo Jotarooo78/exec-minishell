@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: matis <matis@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/09 15:09:16 by armosnie          #+#    #+#             */
-/*   Updated: 2025/04/29 15:32:57 by marvin           ###   ########.fr       */
+/*   Created: 2024/11/14 14:56:55 by messengu          #+#    #+#             */
+/*   Updated: 2024/11/26 11:11:02 by matis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,40 +14,19 @@
 
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	unsigned char	*t1;
-	unsigned char	*t2;
-	size_t			i;
+	size_t		i;
+	const void	*s1cpy;
+	const void	*s2cpy;
 
-	t1 = (unsigned char *)s1;
-	t2 = (unsigned char *)s2;
+	s1cpy = s1;
+	s2cpy = s2;
+	if (n == 0)
+		return (0);
 	i = 0;
-	while (i < n)
+	while (i++ < n - 1 && *(unsigned char *)s1cpy == *(unsigned char *)s2cpy)
 	{
-		if (t1[i] != t2[i])
-			return (t1[i] - t2[i]);
-		i++;
+		s1cpy++;
+		s2cpy++;
 	}
-	return (0);
+	return (*(unsigned char *)s1cpy - *(unsigned char *)s2cpy);
 }
-
-// int	main(void)
-// {
-// 	char	*s1;
-// 	char	*s2;
-// 	size_t	size;
-// 	int		i1;
-// 	int		i2;
-
-// 	s1 = "\xff\xaa\xde\x12";
-// 	s2 = "\xff\xaa\xde\x12MA";
-// 	size = 4;
-// 	i1 = ((memcmp(s1, s2, size) > 0) ? 1 : ((memcmp(s1, s2, size) < 0) ?
-// 				-1 : 0));
-// 	i2 = ((ft_memcmp(s1, s2, size) > 0) ? 1 : ((ft_memcmp(s1, s2, size) < 0) ?
-// 				-1 : 0));
-// 	ft_printf("i1  = %d\n", i1);
-// 	ft_printf("i2  = %d\n", i2);
-// 	if (i1 == i2)
-// 		exit(ft_printf("TEST_SUCCESS"));
-// 	exit(ft_printf("TEST_FAILED"));
-// }

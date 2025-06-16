@@ -1,36 +1,54 @@
-NAME = pipex
+NAME = minishell
 
 CC = cc
+CFLAGS = -Wall -Wextra -Werror -MMD
+LDFLAGS = -L/opt/homebrew/opt/readline/lib
+LDLIBS = -lreadline
+RM = rm -f
 
-SRC = src/errors.c src/get_path.c src/main.c src/pipex.c src/manage_files.c src/manage_here_doc.c
-INCLUDES = includes/pipex.h libft/libft.h
+SRCS = \
+	src/main.c \
+	src/parsing/parser.c \
+	src/parsing/tokenizer.c \
+	src/parsing/token.c \
+	src/parsing/token_checker.c \
+	src/utils/stack.c \
+	src/parsing/utils.c \
+	src/parsing/expander.c \
+	src/parsing/quote_remover.c \
+	src/parsing/cmd_checker.c \
+	src/parsing/tokens_to_cmds.c \
+	src/exec/init_struct.c \
+	
+OBJ_DIR = obj
+DEP_DIR = $(OBJ_DIR)
+OBJS = $(SRCS:src/%.c=$(OBJ_DIR)/%.o)
+DEPS = $(OBJS:.o=.d)
 
-LIBFT_DIR = libft
-LIBFT = $(LIBFT_DIR)/libft.a
+LIBFT = libft/libft.a
 
-OBJ = $(SRC:.c=.o)
+all: $(NAME)
 
-CFLAGS = -Wall -Werror -Wall -g3 -I $(LIBFT_DIR)
-
-all: $(LIBFT) $(NAME)
+$(NAME): $(OBJS) $(LIBFT)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(LDFLAGS) $(LDLIBS) -o $(NAME)
 
 $(LIBFT):
-	$(MAKE) -C $(LIBFT_DIR)
+	make -C libft
 
-$(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME)
-
-.c.o:
+$(OBJ_DIR)/%.o: src/%.c
+	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
+-include $(DEPS)
+
 clean:
-	rm -rf $(OBJ)
-	$(MAKE) -C $(LIBFT_DIR) clean
+	$(RM) -r $(OBJ_DIR)
+	make clean -C libft
 
 fclean: clean
-	rm -rf $(NAME)
-	$(MAKE) -C $(LIBFT_DIR) fclean
+	$(RM) $(NAME)
+	make fclean -C libft
 
 re: fclean all
 
-.PHONY: clean fclean all re
+.PHONY: all clean fclean re 

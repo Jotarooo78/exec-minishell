@@ -3,45 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: matis <matis@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/09 15:59:19 by armosnie          #+#    #+#             */
-/*   Updated: 2025/04/29 15:32:57 by marvin           ###   ########.fr       */
+/*   Created: 2024/11/14 15:10:32 by messengu          #+#    #+#             */
+/*   Updated: 2024/11/25 23:53:33 by matis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *s1, const char *s2, size_t n)
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
 	size_t	i;
-	size_t	j;
+	size_t	needle_size;
 
+	if (!(*needle))
+		return ((char *)haystack);
 	i = 0;
-	if (s2[0] == '\0')
-		return ((char *)&s1[i]);
-	while (s1[i] && i < n)
+	needle_size = ft_strlen(needle);
+	while (haystack[i] && i + needle_size <= len)
 	{
-		j = 0;
-		if (s1[i] == s2[j])
-		{
-			while (s1[i + j] == s2[j] && i + j < n)
-			{
-				j++;
-				if (s2[j] == '\0')
-					return ((char *)&s1[i]);
-			}
-		}
+		if (ft_strncmp(&haystack[i], needle, needle_size) == 0)
+			return ((char *)(haystack + i));
 		i++;
 	}
 	return (0);
 }
-/*
-int	main(int ac, char **av)
-{
-	if (ac == 4)
-	{
-		ft_printf("%s\n", ft_strnstr(av[1], av[2], atoi(av[3])));
-	}
-	return (0);
-}*/

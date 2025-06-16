@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matis <matis@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/11 12:17:20 by armosnie          #+#    #+#             */
-/*   Updated: 2024/11/14 16:55:05 by armosnie         ###   ########.fr       */
+/*   Created: 2024/11/24 15:30:29 by matis             #+#    #+#             */
+/*   Updated: 2024/11/24 15:32:19 by matis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 void	ft_putstr_fd(char *s, int fd)
 {
-	int	i;
+	char	*scpy;
 
-	i = 0;
-	while (s[i])
+	scpy = s;
+	while (*scpy)
 	{
-		write(fd, &s[i], 1);
-		i++;
+		ft_putchar_fd(*scpy, fd);
+		scpy++;
 	}
 }

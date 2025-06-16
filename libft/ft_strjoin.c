@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: messengu <messengu@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/11 13:11:59 by armosnie          #+#    #+#             */
-/*   Updated: 2025/04/29 15:32:57 by marvin           ###   ########.fr       */
+/*   Created: 2024/11/14 17:55:49 by messengu          #+#    #+#             */
+/*   Updated: 2025/04/24 20:10:46 by messengu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,36 +14,16 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*join;
-	int		i;
-	int		j;
+	char	*joined;
+	size_t	size1;
+	size_t	size2;
 
-	i = 0;
-	j = 0;
-	join = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (join == NULL)
+	size1 = ft_strlen(s1);
+	size2 = ft_strlen(s2);
+	joined = (char *)malloc(sizeof(char) * (size1 + size2 + 1));
+	if (!joined)
 		return (NULL);
-	while (s1[i])
-	{
-		join[i] = s1[i];
-		i++;
-	}
-	while (s2[j])
-	{
-		join[i + j] = s2[j];
-		j++;
-	}
-	join[i + j] = '\0';
-	return (join);
+	ft_strlcpy(joined, (char *)s1, size1 + 1);
+	ft_strlcpy(joined + size1, (char *)s2, size2 + 1);
+	return (joined);
 }
-/*
-int	main(int ac, char **av)
-{
-	char *res = ft_strjoin(av[1], av[2]);
-	if (ac == 3)
-	{
-		ft_printf("%s\n", res);
-	}
-	free(res);
-	return (0);
-}*/

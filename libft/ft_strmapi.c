@@ -3,44 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: matis <matis@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/14 16:20:27 by armosnie          #+#    #+#             */
-/*   Updated: 2025/04/29 15:32:57 by marvin           ###   ########.fr       */
+/*   Created: 2024/11/24 15:06:52 by matis             #+#    #+#             */
+/*   Updated: 2024/11/24 15:19:10 by matis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-/*
-char	ft_up(unsigned int index, char c)
-{
-	r = index + c;
-	return (r);
-}
-*/
+
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	char			*str;
+	char			*res;
 	unsigned int	i;
 
-	i = 0;
-	str = malloc(sizeof(char) * (ft_strlen(s) + 1));
-	if (str == NULL)
+	res = malloc(sizeof(char) * ft_strlen(s) + 1);
+	if (!res)
 		return (NULL);
-	while (s[i])
+	i = 0;
+	while (*s)
 	{
-		str[i] = f(i, s[i]);
+		res[i] = f(i, *s);
 		i++;
+		s++;
 	}
-	str[i] = '\0';
-	return (str);
+	res[i] = '\0';
+	return (res);
 }
-/*
-int	main(void)
-{
-  char *final_s;
-  char *s = "aaa";
-  final_s = ft_strmapi(s, &ft_up);
-  ft_printf("%s\n", final_s);
-  return (0);
-}*/

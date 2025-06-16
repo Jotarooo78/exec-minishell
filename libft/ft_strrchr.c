@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: matis <matis@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/09 14:10:51 by armosnie          #+#    #+#             */
-/*   Updated: 2025/04/29 15:32:57 by marvin           ###   ########.fr       */
+/*   Created: 2024/11/14 13:57:22 by messengu          #+#    #+#             */
+/*   Updated: 2024/11/26 00:08:19 by matis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,20 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	char	ch;
-	char	*src;
-	int		len;
+	char	*scpy;
+	char	*last_occ;
+	char	modc;
 
-	len = 0;
-	ch = (char)c;
-	src = (char *)s;
-	while (src[len])
-		len++;
-	while (len != 0)
+	modc = c % 128;
+	scpy = (char *)s;
+	last_occ = NULL;
+	while (*scpy)
 	{
-		if (src[len] == ch)
-			return (&src[len]);
-		len--;
+		if (*scpy == modc)
+			last_occ = scpy;
+		scpy++;
 	}
-	if (src[0] == ch)
-		return (&src[0]);
-	return (0);
+	if (*scpy == modc)
+		last_occ = scpy;
+	return (last_occ);
 }
-/*
-int	main(int ac, char **av)
-{
-	if (ac == 3)
-	{
-		ft_printf("%s\n", ft_strrchr(av[1], av[2][0]));
-		ft_printf("%s\n", strrchr(av[1], av[2][0]));
-	}
-	return (0);
-}
-*/

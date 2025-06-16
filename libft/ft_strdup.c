@@ -3,43 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: matis <matis@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/09 17:19:13 by armosnie          #+#    #+#             */
-/*   Updated: 2025/04/29 15:32:57 by marvin           ###   ########.fr       */
+/*   Created: 2024/11/14 16:32:50 by messengu          #+#    #+#             */
+/*   Updated: 2024/11/25 17:51:19 by matis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s)
+char	*ft_strdup(const char *s1)
 {
+	int		strlen;
 	char	*dup;
-	int		i;
 
-	i = 0;
-	dup = malloc(sizeof(char) * (ft_strlen(s) + 1));
-	if (dup == NULL)
+	strlen = ft_strlen(s1);
+	dup = (char *)malloc(sizeof(char) * strlen + 1);
+	if (!dup)
 		return (NULL);
-	while (s[i])
+	strlen = 0;
+	while (s1[strlen])
 	{
-		dup[i] = s[i];
-		i++;
+		dup[strlen] = s1[strlen];
+		strlen++;
 	}
-	dup[i] = '\0';
+	dup[strlen] = '\0';
 	return (dup);
 }
-/*
-int	main(int ac, char **av)
-{
-	char	*dup = ft_strdup(av[1]);
-	char	*dupv2 = strdup(av[1]);
-	if (ac == 2)
-	{
-		ft_printf("%s\n", dup);
-		ft_printf("%s\n", dupv2);
-	}
-	free (dup);
-	free (dupv2);
-	return (0);
-}*/
